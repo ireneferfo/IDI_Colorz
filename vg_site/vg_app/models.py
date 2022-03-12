@@ -15,7 +15,7 @@ class Gallery(models.Model):
     Coordinates_y = models.FloatField(blank=True, null=True)
 
 class Picture(models.Model):
-    ID = models.IntegerField(default=0, unique=True)
+    Picture_ID = models.IntegerField(default=0, unique=True)
     Title = models.CharField(max_length=50)
     Year = models.PositiveSmallIntegerField(validators=[MinValueValidator(1000),
     MaxValueValidator(timezone.now().year)])
@@ -31,6 +31,6 @@ class Picture(models.Model):
     Tags = models.CharField(max_length=200)
 
 class Color(models.Model):
-    ID = models.ForeignKey(Picture, on_delete=models.CASCADE)
+    Picture = models.ForeignKey(Picture, on_delete=models.CASCADE)
     Color = models.CharField(max_length=6)
     Quantity = models.PositiveIntegerField(default=0)
