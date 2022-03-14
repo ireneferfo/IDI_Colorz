@@ -1,7 +1,10 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'pictures', views.PictureView)
 
 urlpatterns = [
-    path('page', views.page, name='page'),
-    path('', views.index, name='index'),
+    path('', include(router.urls))
 ]
