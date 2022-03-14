@@ -19,7 +19,7 @@ for artist in ARTISTS:
     Death_date = datetime.fromtimestamp(int(artist['deathDay'][6:-5])).date()
     url = artist['url']
 
-    Artist.objects.create(
+    artist_object = Artist.objects.create(
         Artist_ID = Artist_ID,
         Name = Name,
         Birth_date = Birth_date,
@@ -27,6 +27,23 @@ for artist in ARTISTS:
     )
 
     with open(f'resources/{url}.json', 'r') as p:
-        PAINTINGS = json.load(p)
+        PICTURES = json.load(p)
+
+    for picture in PICTURES:
+    
+        picture_object = Picture.objects.create(
+            Picture_ID = picture['contentId'],
+            Title = picture['title'],
+            Year = picture['completitionYear'],
+            Artist = artist_object,
+            Width = picture['width'],
+            Height = picture['height'],
+            Location = picture['location'],
+            Genre = picture['genre'],
+            Style = picture['style'],
+            Size_x = picture['sizeX'],
+            Size_y = picture['sizeY'],
+            Tags = picture['tags']
+        )
 
 

@@ -19,17 +19,17 @@ class Picture(models.Model):
     Picture_ID = models.IntegerField(default=0, unique=True)
     Title = models.CharField(max_length=50)
     Year = models.PositiveSmallIntegerField(validators=[MinValueValidator(1000),
-    MaxValueValidator(timezone.now().year)])
+    MaxValueValidator(timezone.now().year)], null=True)
     Artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
     Width = models.PositiveSmallIntegerField()
     Height = models.PositiveSmallIntegerField()
-    Location = models.CharField(max_length=50)
+    Location = models.CharField(max_length=50, null=True)
     Genre = models.CharField(max_length=50, blank=True, null=True)
     Style = models.CharField(max_length=50, blank=True, null=True)
     Size_x = models.FloatField(blank=True, null=True)
     Size_y = models.FloatField(blank=True, null=True)    
     Gallery_name = models.ForeignKey(Gallery, blank=True, null=True, on_delete=models.CASCADE)
-    Tags = models.CharField(max_length=200)
+    Tags = models.CharField(max_length=200, null=True)
 
 class Color(models.Model):
     Picture = models.ForeignKey(Picture, on_delete=models.CASCADE)
