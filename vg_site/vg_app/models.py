@@ -4,9 +4,10 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Artist(models.Model):
-    Name = models.CharField(max_length=50)
-    Surname = models.CharField(max_length=50)
     Artist_ID = models.IntegerField(default=0, unique=True)
+    Name = models.CharField(max_length=50)
+    Birth_date = models.DateField()
+    Death_date = models.DateField()
 
 class Gallery(models.Model):
     Name = models.CharField(max_length=200)
