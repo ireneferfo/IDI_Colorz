@@ -6,6 +6,8 @@ from vg_app.models import Picture
 from url_filter.filtersets import ModelFilterSet
 from django.http import JsonResponse
 from .image_parser import parse
+from random import randint
+from django.db.models import Max
 
 # Create your views here.
 class PictureView(viewsets.ReadOnlyModelViewSet):
@@ -26,7 +28,19 @@ def picture_detail(request, pk):
 	image = parse(serializer)
 	with open(image, 'rb') as i:
 		return HttpResponse(i.read(), content_type='image/jpeg')
-	# return JsonResponse(serializer.data.get('Title'), safe=False)
+
+def random_picture_detail(request):
+	picture = Picture.objects.all()
+	max = picture.aggregate(Max('id'))
+	pk = randint(1, max['id__max'])
+	try:
+		picture = Picture.objects.get(pk=pk)
+	except Picture.DoesNotExist:
+		return HttpResponse(status=404)
+	serializer = PictureSerializer(picture)
+	image = parse(serializer)
+	with open(image, 'rb') as i:
+		return HttpResponse(i.read(), content_type='image/jpeg')		
 
 def index(request):
     return HttpResponse("Index")
