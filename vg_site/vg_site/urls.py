@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from .views import HomePage
+
 urlpatterns = [
-    path('', include('vg_app.urls')),
+    path('', HomePage.as_view(), name='home'),
+    path('vg_app/', include('vg_app.urls', namespace='vg_app')),
     path('admin/', admin.site.urls),
 ]
