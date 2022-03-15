@@ -13,20 +13,15 @@ with open('resources/artists.json', 'r') as a:
   ARTISTS = json.load(a)
 
 for artist in ARTISTS:
-    Artist_ID = artist['contentId']
-    Name = artist['artistName']
-    Birth_date =  datetime.fromtimestamp(int(artist['birthDay'][6:-5])).date()  
-    Death_date = datetime.fromtimestamp(int(artist['deathDay'][6:-5])).date()
-    url = artist['url']
-
     artist_object = Artist.objects.create(
-        Artist_ID = Artist_ID,
-        Name = Name,
-        Birth_date = Birth_date,
-        Death_date = Death_date
+        Artist_ID = artist['contentId'],
+        Name = artist['artistName'],
+        Artist_url = artist['url'],
+        Birth_date = datetime.fromtimestamp(int(artist['birthDay'][6:-5])).date(),
+        Death_date = datetime.fromtimestamp(int(artist['deathDay'][6:-5])).date()
     )
 
-    with open(f'resources/{url}.json', 'r') as p:
+    with open(f"resources/{artist['url']}.json", 'r') as p:
         PICTURES = json.load(p)
 
     for picture in PICTURES:

@@ -6,6 +6,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class Artist(models.Model):
     Artist_ID = models.IntegerField(default=0, unique=True)
     Name = models.CharField(max_length=50)
+    Artist_url = models.CharField(max_length=100)
     Birth_date = models.DateField()
     Death_date = models.DateField()
 

@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-f = open("secret.txt", "r")
+f = open("vg_site/secret.txt", "r")
 secret_key = f.read()
 SECRET_KEY = secret_key
 
