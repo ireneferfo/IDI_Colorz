@@ -1,5 +1,5 @@
 .DS_Store/
 .DS_Store
 vg_site/vg_site/secret.txt
-vg_site/resources/images
+vg_site/vg_app/static/images
 .idea/

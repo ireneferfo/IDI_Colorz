@@ -6,7 +6,7 @@
 <ul>
   {% for picture in picture_list %}
   <li>
-    <a href="{{ picture.get_absolute_url }}">{{ picture.Title }}</a>
+    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>
   </li>
   {% endfor %}
 </ul>
