@@ -3,3 +3,6 @@
 vg_site/vg_site/secret.txt
 vg_site/resources/images
 .idea/
+vg_site/vg_app/__pycache__
+vg_site/vg_app/migrations/__pycache__
+vg_site/vg_site/__pycache__
