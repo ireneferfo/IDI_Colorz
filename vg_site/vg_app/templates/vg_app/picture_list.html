@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Picture List</h1>
+{% if picture_list %}
+<ul>
+  {% for picture in picture_list %}
+  <li>
+    <a href="{{ picture.get_absolute_url }}">{{ picture.Title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no pictures available.</p>
+{% endif %}
+{% endblock %}

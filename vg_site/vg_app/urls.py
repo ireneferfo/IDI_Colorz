@@ -8,8 +8,9 @@ router = DefaultRouter()
 router.register(r'pictures', views.PictureView)
 
 urlpatterns = [
-    path('picture/', views.picture_list, name='picture'),
-    path('picture/<int:pk>/', views.picture_detail),
-    path('picture/random/', views.random_picture_detail, name='random'),
-    path('', include(router.urls))
+    path('', views.index, name='index'),
+    path('picture/', views.PictureListView
+         .as_view(), name='picture'),
+    path('picture/<int:pk>', views.PictureDetailView.as_view(), name='picture-detail'),
+    path('picture/random/', views.random_picture_detail, name='random')
 ]

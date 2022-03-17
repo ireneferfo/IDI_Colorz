@@ -19,7 +19,7 @@ from django.urls import include, path
 from .views import HomePage
 
 urlpatterns = [
-    path('', HomePage.as_view(), name='home'),
+    #path('', HomePage.as_view(), name='home'),
     path('vg_app/', include('vg_app.urls', namespace='vg_app')),
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls)
 ]

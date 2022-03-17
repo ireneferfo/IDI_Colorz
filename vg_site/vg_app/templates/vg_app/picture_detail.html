@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Title: {{ picture.Title }}</h1>
+
+<p><strong>Author:</strong> <a href="">{{ picture.Artist.Name }}</a></p>
+<p><strong>Genre:</strong> {{ picture.Genre}}</p>
+<p><strong>Style:</strong> {{ picture.Style}}</p>
+
+<div style="margin-left:20px;margin-top:20px">
+
+</div>
+{% endblock %}
