@@ -1,13 +1,20 @@
 {% extends "base_generic.html" %}
 
+{% load static %}
+
 {% block content %}
 <h1>Van Gogh Colorz</h1>
 <h2>Picture List</h2>
 {% if picture_list %}
-<ul>
+<ul style="line-height: 100px;">
   {% for picture in picture_list %}
   <li>
-    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>
+    <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" style="
+            max-height:80px;
+            max-width:100px;
+            height:auto;
+            width:auto;">
+    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, {{ picture.Artist.Name }} ({{ picture.Year }})
   </li>
   {% endfor %}
 </ul>

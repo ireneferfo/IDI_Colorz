@@ -12,11 +12,25 @@
         <p><strong>Style:</strong> {{ picture.Style}}</p>
     </div>
     <div class="column">
+        {% if picture.Year != None %}
         <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" height=500 style="margin-left: 100px;
-            max-height:800px;
-            max-width:800px;
+            max-height:500px;
+            max-width:500px;
             height:auto;
             width:auto;">
+        {% else %}
+        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown_year/{{picture.Picture_ID}}.jpg" height=500 style="margin-left: 100px;
+            max-height:500px;
+            max-width:500px;
+            height:auto;
+            width:auto;">
+        {% endif %}
     </div>
 </div>
+<ul>
+    {% for color in picture.Color %}
+    <li>
+        {{color.Color}} {{color.Quantity}}
+    </li>
+</ul>
 {% endblock %}
