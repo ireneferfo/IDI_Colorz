@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 
 def preprocess(raw):
-    image = cv2.resize(raw, (900, 600), interpolation = cv2.INTER_AREA)                                          
+    image = cv2.resize(raw, (600, 400), interpolation = cv2.INTER_AREA)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3)
     return image
 

@@ -28,9 +28,10 @@
     </div>
 </div>
 <ul>
-    {% for color in picture.Color %}
+    {% for color in picture.Color.all %}
     <li>
         {{color.Color}} {{color.Quantity}}
     </li>
+    {% endfor %}
 </ul>
 {% endblock %}

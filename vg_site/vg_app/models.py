@@ -16,6 +16,10 @@ class Gallery(models.Model):
     Coordinates_x = models.FloatField(blank=True, null=True)
     Coordinates_y = models.FloatField(blank=True, null=True)
 
+class Color(models.Model):
+    Color = models.CharField(max_length=6)
+    Quantity = models.PositiveIntegerField(default=0)
+
 class Picture(models.Model):
     Picture_ID = models.IntegerField(default=0, unique=True)
     Title = models.CharField(max_length=50)
@@ -31,8 +35,4 @@ class Picture(models.Model):
     Size_y = models.FloatField(blank=True, null=True)    
     Gallery_name = models.ForeignKey(Gallery, blank=True, null=True, on_delete=models.CASCADE)
     Tags = models.CharField(max_length=200, null=True)
-
-class Color(models.Model):
-    Picture = models.ForeignKey(Picture, on_delete=models.CASCADE)
-    Color = models.CharField(max_length=6)
-    Quantity = models.PositiveIntegerField(default=0)
+    Color = models.ManyToManyField(Color, null=True)

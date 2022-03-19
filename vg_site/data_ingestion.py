@@ -1,6 +1,8 @@
 import json
 import os
 import django
+from get_colors import extract_colors
+from tqdm import tqdm
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vg_site.settings')
 django.setup()
@@ -24,7 +26,7 @@ for artist in ARTISTS:
     with open(f"resources/{artist['url']}.json", 'r') as p:
         PICTURES = json.load(p)
 
-    for picture in PICTURES:
+    for picture in tqdm(PICTURES):
     
         picture_object = Picture.objects.create(
             Picture_ID = picture['contentId'],
@@ -41,4 +43,18 @@ for artist in ARTISTS:
             Tags = picture['tags']
         )
 
+        if picture_object.Year == 1876:
+            print(picture_object.Picture_ID)
+            if picture_object.Year is not None:
+                d = extract_colors(f'vg_app/static/images/{artist_object.Artist_url}/{picture_object.Year}/{picture_object.Picture_ID}.jpg')
+            else:
+                d = extract_colors(f'vg_app/static/images/{artist_object.Artist_url}/unknown-year/{picture_object.Picture_ID}.jpg')
+            
+            for k, v in d.items():
+                color_object = Color.objects.create(
+                    Color = k,
+                    Quantity = v
+                )
+                picture_object.Color.add(color_object)
 
+        

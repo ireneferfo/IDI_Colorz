@@ -53,11 +53,3 @@ def random_picture_detail(request):
     max = picture.aggregate(Max('id'))
     pk = randint(1, max['id__max'])
     return redirect('vg_app:picture-detail', pk=pk)
-    # try:
-    #     picture = Picture.objects.get(pk=pk)
-    # except Picture.DoesNotExist:
-    #     return HttpResponse(status=404)
-    # serializer = PictureSerializer(picture)
-    # image = parse(serializer)
-    # with open(image, 'rb') as i:
-    #     return HttpResponse(i.read(), content_type='image/jpeg')
