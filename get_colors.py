@@ -18,8 +18,8 @@ def rgb_to_hex(rgb_color):
     return hex_color
 
 
-def analyze(img):
-    clf = KMeans(n_clusters = 10, random_state = 0)
+def analyze(img, n_colors):
+    clf = KMeans(n_clusters = n_colors, random_state = 0)
     color_labels = clf.fit_predict(img)
     center_colors = clf.cluster_centers_ # in RGB
 
@@ -31,10 +31,11 @@ def analyze(img):
         d[ordered_colors[i]] = list(counts.values())[i]
     d = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse = True)}
 
-    plt.figure(figsize = (12, 8))
-    plt.pie(d.values(), labels = d.keys(), colors = d.keys())
+    # plt.figure(figsize = (12, 8))
+    # plt.pie(d.values(), labels = d.keys(), colors = d.keys())
+    return d
 
 
-def extract_colors(image):
+def extract_colors(image, n_colors = 10):
     modified_image = preprocess(image)
-    analyze(modified_image)
+    analyze(modified_image, n_colors)
