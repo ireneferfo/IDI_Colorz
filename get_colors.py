@@ -36,6 +36,8 @@ def analyze(img, n_colors):
     return d
 
 
-def extract_colors(image, n_colors = 10):
+def extract_colors(image_path, n_colors = 10):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     modified_image = preprocess(image)
-    analyze(modified_image, n_colors)
+    return analyze(modified_image, n_colors)
