@@ -3,13 +3,20 @@
 {% load static %}
 
 {% block content %}
-<h1>{{ picture.Title }}</h1>
-
-<p><strong>Author:</strong> <a href="">{{ picture.Artist.Name }}</a></p>
-<p><strong>Genre:</strong> {{ picture.Genre}}</p>
-<p><strong>Style:</strong> {{ picture.Style}}</p>
-
-<div style="margin-left:20px;margin-top:20px">
-    <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" width=500>
+<h1>Van Gogh Colorz</h1>
+<h2>{{ picture.Title }}</h2>
+<div class="row">
+    <div class="column">
+        <p><strong>Author:</strong> <a href="">{{ picture.Artist.Name }}</a></p>
+        <p><strong>Genre:</strong> {{ picture.Genre}}</p>
+        <p><strong>Style:</strong> {{ picture.Style}}</p>
+    </div>
+    <div class="column">
+        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" height=500 style="margin-left: 100px;
+            max-height:800px;
+            max-width:800px;
+            height:auto;
+            width:auto;">
+    </div>
 </div>
 {% endblock %}
