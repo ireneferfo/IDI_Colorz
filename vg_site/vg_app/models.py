@@ -18,7 +18,7 @@ class Gallery(models.Model):
 
 class Color(models.Model):
     Color = models.CharField(max_length=6)
-    Quantity = models.PositiveIntegerField(default=0)
+    Quantity = models.FloatField(default=0)
 
 class Picture(models.Model):
     Picture_ID = models.IntegerField(default=0, unique=True)

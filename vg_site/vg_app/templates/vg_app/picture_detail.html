@@ -1,7 +1,6 @@
 {% extends "base_generic.html" %}
-
 {% load static %}
-
+{% load mathfilters %}
 {% block content %}
 <h1>Van Gogh Colorz</h1>
 <h2>{{ picture.Title }}</h2>
@@ -13,25 +12,31 @@
     </div>
     <div class="column">
         {% if picture.Year != None %}
-        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" height=500 style="margin-left: 100px;
+        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" style="margin-left: 100px;
             max-height:500px;
             max-width:500px;
             height:auto;
             width:auto;">
         {% else %}
-        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown_year/{{picture.Picture_ID}}.jpg" height=500 style="margin-left: 100px;
+        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg" style="margin-left: 100px;
             max-height:500px;
             max-width:500px;
             height:auto;
             width:auto;">
         {% endif %}
     </div>
+    <div class="column" style="height: 500px; margin-left: 100px">
+        {% for color in picture.Color.all %}
+        <div style="width: 50px; height:{{color.Quantity|mul:100}}%; background-color: {{color.Color}};"></div>
+        {% endfor %}
+    </div>
+
 </div>
-<ul>
+<div style="width: 80%; margin-top: 50px">
     {% for color in picture.Color.all %}
-    <li>
-        {{color.Color}} {{color.Quantity}}
-    </li>
+    <div style="height: 50px; width:{{color.Quantity|mul:100}}%; background-color: {{color.Color}}; float: left"></div>
     {% endfor %}
-</ul>
+</div>
+<div style="clear:both;"></div>
+
 {% endblock %}

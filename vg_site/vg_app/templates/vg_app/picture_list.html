@@ -9,12 +9,21 @@
 <ul style="line-height: 100px;">
   {% for picture in picture_list %}
   <li>
+    {% if picture.Year != None %}
     <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" style="
             max-height:80px;
             max-width:100px;
             height:auto;
             width:auto;">
     <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, {{ picture.Artist.Name }} ({{ picture.Year }})
+    {% else %}
+    <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg" style="
+            max-height:80px;
+            max-width:100px;
+            height:auto;
+            width:auto;">
+    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, {{ picture.Artist.Name }} (unknown)
+    {% endif %}
   </li>
   {% endfor %}
 </ul>
