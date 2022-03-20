@@ -5,9 +5,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 
+sizeX = 600
+sizeY = 400
 
 def preprocess(raw):
-    image = cv2.resize(raw, (600, 400), interpolation = cv2.INTER_AREA)                                          
+    image = cv2.resize(raw, (sizeX, sizeY), interpolation = cv2.INTER_AREA)                                          
     image = image.reshape(image.shape[0]*image.shape[1], 3)
     return image
 
@@ -29,7 +31,7 @@ def analyze(img, n_colors):
 
     d = {}
     for i in range(len(ordered_colors)):
-        d[ordered_colors[i]] = list(counts.values())[i]
+        d[ordered_colors[i]] = list(counts.values())[i]/(sizeX*sizeY)
     d = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse = True)}
 
     # plt.figure(figsize = (12, 8))

@@ -15,19 +15,19 @@ from datetime import datetime
 
 def picture_creation(picture, artist_object):
     picture_object = Picture.objects.create(
-    Picture_ID = picture['contentId'],
-    Title = picture['title'],
-    Year = picture['completitionYear'],
-    Artist = artist_object,
-    Width = picture['width'],
-    Height = picture['height'],
-    Location = picture['location'],
-    Genre = picture['genre'],
-    Style = picture['style'],
-    Size_x = picture['sizeX'],
-    Size_y = picture['sizeY'],
-    Tags = picture['tags']
-    )
+                        Picture_ID = picture['contentId'],
+                        Title = picture['title'],
+                        Year = picture['completitionYear'],
+                        Artist = artist_object,
+                        Width = picture['width'],
+                        Height = picture['height'],
+                        Location = picture['location'],
+                        Genre = picture['genre'],
+                        Style = picture['style'],
+                        Size_x = picture['sizeX'],
+                        Size_y = picture['sizeY'],
+                        Tags = picture['tags']
+                        )
 
     if picture_object.Year is not None:
         d = extract_colors(f'vg_app/static/images/{artist_object.Artist_url}/{picture_object.Year}/{picture_object.Picture_ID}.jpg')
