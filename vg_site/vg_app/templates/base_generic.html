@@ -17,7 +17,7 @@
     <a href="{% url 'vg_app:index' %}">Home</a>
     <a href="{% url 'vg_app:picture' %}">Pictures</a>
     <a href="{% url 'vg_app:random' %}">Random Picture</a>
-    <a href="">Authors</a>
+    <a href="{% url 'vg_app:artist' %}">Artists</a>
 </div>
 <div class="main">
     {% block content %}{% endblock %}

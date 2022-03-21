@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+<h2>{{ artist.Name }}</h2>
+<p><strong>Birth Date:</strong> {{ artist.Birth_date}}</p>
+<p><strong>Death Date:</strong> {{ artist.Death_date}}</p>
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<h2>Artist List</h2>
+{% if artist_list %}
+<ul style="line-height: 100px;">
+    {% for artist in artist_list %}
+    <li>
+        <a href="{% url 'vg_app:artist-detail' pk=artist.id %}">{{ artist.Name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There are no authors available.</p>
+{% endif %}
+{% endblock %}
