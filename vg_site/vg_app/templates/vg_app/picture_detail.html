@@ -2,7 +2,6 @@
 {% load static %}
 {% load mathfilters %}
 {% block content %}
-<h1>Van Gogh Colorz</h1>
 <h2>{{ picture.Title }}</h2>
 <div class="row" style="margin-left: 0px;">
     <div class="column">
@@ -14,7 +13,6 @@
         {% if picture.Year != None %}
         <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" style="margin-left: 100px;
             max-height:500px;
-            max-width:500px;
             height:auto;
             width:auto;">
         {% else %}
@@ -29,14 +27,9 @@
         {% for color in picture.Color.all %}
         <div style="width: 50px; height:{{color.Quantity|mul:100}}%; background-color: {{color.Color}};"></div>
         {% endfor %}
+        <div style="clear:both;"></div>
     </div>
+</div>
 
-</div>
-<div style="width: 80%; margin-top: 50px">
-    {% for color in picture.Color.all %}
-    <div style="height: 50px; width:{{color.Quantity|mul:100}}%; background-color: {{color.Color}}; float: left"></div>
-    {% endfor %}
-</div>
-<div style="clear:both;"></div>
 
 {% endblock %}
