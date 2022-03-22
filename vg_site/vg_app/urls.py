@@ -10,7 +10,5 @@ urlpatterns = [
     path('picture/<int:pk>', views.PictureDetailView.as_view(), name='picture-detail'),
     path('picture/random/', views.random_picture_detail, name='random'),
     path('artist/', views.ArtistListView.as_view(), name='artist'),
-    path('artist/<int:pk>', views.ArtistDetailView.as_view(), name='artist-detail'),
-    path('picture/search', views.PictureSearchView.as_view(), name='search'),
-    path('picture/search_form', views.search_form, name='search-form')
+    path('artist/<int:pk>', views.ArtistDetailView.as_view(), name='artist-detail')
 ]
