@@ -5,22 +5,15 @@
 <h2>{{ picture.Title }}</h2>
 <div class="row" style="margin-left: 0px;">
     <div class="column">
-        <p><strong>Author:</strong> <a href="">{{ picture.Artist.Name }}</a></p>
+        <p><strong>Author:</strong> <a href="{% url 'vg_app:artist-detail' pk=picture.Artist.id %}">{{ picture.Artist.Name }}</a></p>
         <p><strong>Genre:</strong> {{ picture.Genre}}</p>
         <p><strong>Style:</strong> {{ picture.Style}}</p>
     </div>
     <div class="column">
         {% if picture.Year != None %}
-        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" style="margin-left: 100px;
-            max-height:500px;
-            height:auto;
-            width:auto;">
+        <img class = "image-detail" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg">
         {% else %}
-        <img src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg" style="margin-left: 100px;
-            max-height:500px;
-            max-width:500px;
-            height:auto;
-            width:auto;">
+        <img class = "image-detail" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg">
         {% endif %}
     </div>
     <div class="column" style="height: 500px; margin-left: 100px">
@@ -30,6 +23,4 @@
         <div style="clear:both;"></div>
     </div>
 </div>
-
-
 {% endblock %}

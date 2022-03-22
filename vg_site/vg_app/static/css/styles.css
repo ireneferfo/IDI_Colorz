@@ -56,6 +56,20 @@
     top: 0;
 }
 
+.image-detail {
+    margin-left: 100px;
+    max-width: 600px;
+    height: 500px;
+    width: auto;
+}
+
+.image-list {
+    max-height:80px;
+    max-width:100px;
+    height:auto;
+    width:auto;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
