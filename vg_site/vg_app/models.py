@@ -20,6 +20,7 @@ class Color(models.Model):
     Color = models.CharField(max_length=6)
     Quantity = models.FloatField(default=0)
 
+
 class Picture(models.Model):
     Picture_ID = models.IntegerField(default=0, unique=True)
     Title = models.CharField(max_length=50)
