@@ -22,6 +22,9 @@ def random_picture_detail(request):
     pk = randint(1, max['id__max'])
     return redirect('vg_app:picture-detail', pk=pk)
 
+def search_form(request):
+    return render(request, 'search_form.html')
+
 class PictureListView(generic.ListView):
     model = Picture
     paginate_by = 50
@@ -41,8 +44,13 @@ class PictureSearchView(generic.ListView):
     def get_queryset(self):
         title = self.request.GET.get('title')
         year = self.request.GET.get('year')
-        #artist = self.request.GET.get('artist')
-        object_list = Picture.objects.filter(
-        Q(Title__icontains=title) or Q(Year__icontains=year)
-        )
+        artist = self.request.GET.get('artist')
+        q = Q()
+        if title:
+            q &= Q(Title__icontains=title) 
+        if year:
+            q &= Q(Year__icontains=year)
+        if artist:
+            q &= Q(Artist__Name__icontains=artist)
+        object_list = Picture.objects.filter(q)
         return object_list

@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<h2>Search</h2>
+<form action="{% url 'vg_app:search' %}" method="get">
+    <input name="title" type="text" placeholder="Title">
+    <input name="year" type="text" placeholder="Year">
+    <input name="artist" type="text" placeholder="Artist">
+    <button type="submit" class="button">Search</button>
+  </form>  
+{% endblock %}
