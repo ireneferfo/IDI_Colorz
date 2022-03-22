@@ -24,7 +24,6 @@ def random_picture_detail(request):
 
 class PictureListView(generic.ListView):
     model = Picture
-    paginate_by = 50
     def get_queryset(self):
         title = self.request.GET.get('title')
         year = self.request.GET.get('year')
@@ -44,7 +43,6 @@ class PictureDetailView(generic.DetailView):
 
 class ArtistListView(generic.ListView):
     model = Artist
-    paginate_by = 50
 
 class ArtistDetailView(generic.DetailView):
     model = Artist
