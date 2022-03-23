@@ -8,12 +8,8 @@ class Artist(models.Model):
     Artist_url = models.CharField(max_length=100)
     Birth_date = models.DateField()
     Death_date = models.DateField()
-
-class Gallery(models.Model): # togliere?
-    Name = models.CharField(max_length=200)
-    Location = models.CharField(max_length=200)
-    Coordinates_x = models.FloatField(blank=True, null=True)
-    Coordinates_y = models.FloatField(blank=True, null=True)
+    Image = models.CharField(max_length=500, null=True, blank=True)
+    Wikipedia = models.CharField(max_length=500, null=True, blank=True)
 
 class Color(models.Model):
     Color = models.CharField(max_length=6)
@@ -32,6 +28,6 @@ class Picture(models.Model):
     Style = models.CharField(max_length=50, blank=True, null=True)
     Size_x = models.FloatField(blank=True, null=True)
     Size_y = models.FloatField(blank=True, null=True)    
-    Gallery_name = models.ForeignKey(Gallery, blank=True, null=True, on_delete=models.CASCADE)
+    Gallery_name = models.CharField(max_length=200, blank=True, null=True)
     Tags = models.CharField(max_length=200, null=True)
     Color = models.ManyToManyField(Color)

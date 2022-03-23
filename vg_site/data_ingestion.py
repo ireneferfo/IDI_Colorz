@@ -5,12 +5,12 @@ from get_colors import extract_colors
 from tqdm import tqdm
 from time import time
 from joblib import Parallel, delayed
+from datetime import datetime, timedelta
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vg_site.settings')
 django.setup()
 
 from vg_app.models import *
-from datetime import datetime
 
 
 def picture_creation(picture, artist_object):
@@ -26,6 +26,7 @@ def picture_creation(picture, artist_object):
                         Style = picture['style'],
                         Size_x = picture['sizeX'],
                         Size_y = picture['sizeY'],
+                        Gallery_name = picture['galleryName'],
                         Tags = picture['tags']
                         )
 
@@ -42,8 +43,6 @@ def picture_creation(picture, artist_object):
         picture_object.Color.add(color_object)
 
 
-
-
 with open('resources/artists.json', 'r') as a:
   ARTISTS = json.load(a)
 
@@ -53,8 +52,10 @@ for artist in ARTISTS:
         Artist_ID = artist['contentId'],
         Name = artist['artistName'],
         Artist_url = artist['url'],
-        Birth_date = datetime.fromtimestamp(int(artist['birthDay'][6:-5])).date(),
-        Death_date = datetime.fromtimestamp(int(artist['deathDay'][6:-5])).date()
+        Birth_date = (datetime.fromtimestamp(0) + timedelta(seconds=int(artist['birthDay'][6:-5]))).date(),
+        Death_date = (datetime.fromtimestamp(0) + timedelta(seconds=int(artist['deathDay'][6:-5]))).date(),
+        Image = artist['image'],
+        Wikipedia = artist['wikipediaUrl']
     )
 
     with open(f"resources/{artist['url']}.json", 'r') as p:
