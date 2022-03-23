@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-# Create your models here.
 class Artist(models.Model):
     Artist_ID = models.IntegerField(default=0, unique=True)
     Name = models.CharField(max_length=50)
@@ -10,7 +9,7 @@ class Artist(models.Model):
     Birth_date = models.DateField()
     Death_date = models.DateField()
 
-class Gallery(models.Model):
+class Gallery(models.Model): # togliere?
     Name = models.CharField(max_length=200)
     Location = models.CharField(max_length=200)
     Coordinates_x = models.FloatField(blank=True, null=True)
@@ -19,7 +18,6 @@ class Gallery(models.Model):
 class Color(models.Model):
     Color = models.CharField(max_length=6)
     Quantity = models.FloatField(default=0)
-
 
 class Picture(models.Model):
     Picture_ID = models.IntegerField(default=0, unique=True)
@@ -36,4 +34,4 @@ class Picture(models.Model):
     Size_y = models.FloatField(blank=True, null=True)    
     Gallery_name = models.ForeignKey(Gallery, blank=True, null=True, on_delete=models.CASCADE)
     Tags = models.CharField(max_length=200, null=True)
-    Color = models.ManyToManyField(Color, null=True)
+    Color = models.ManyToManyField(Color)

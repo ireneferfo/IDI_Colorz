@@ -1,10 +1,7 @@
 from collections import Counter
 from sklearn.cluster import KMeans
-from matplotlib import colors
-import matplotlib.pyplot as plt
-import numpy as np
 import cv2
-from sklearnex import patch_sklearn, config_context
+
 
 sizeX = 600
 sizeY = 400
@@ -35,9 +32,6 @@ def analyze(img, n_colors):
     for i in range(len(ordered_colors)):
         d[ordered_colors[i]] = list(counts.values())[i]/(sizeX*sizeY)
     d = {k: v for k, v in sorted(d.items(), key=lambda item: (item[1]), reverse=True)}
-
-    # plt.figure(figsize = (12, 8))
-    # plt.pie(d.values(), labels = d.keys(), colors = d.keys())
     return d
 
 

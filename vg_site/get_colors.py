@@ -1,8 +1,5 @@
 from collections import Counter
 from sklearn.cluster import KMeans
-from matplotlib import colors
-import matplotlib.pyplot as plt
-import numpy as np
 import cv2
 
 sizeX = 600

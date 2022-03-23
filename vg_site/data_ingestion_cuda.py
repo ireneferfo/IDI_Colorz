@@ -3,7 +3,7 @@ import os
 import django
 from get_colors_cuda import extract_colors
 from tqdm import tqdm
-from sklearnex import patch_sklearn, config_context
+from sklearnex import patch_sklearn
 patch_sklearn()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vg_site.settings')

@@ -1,24 +1,12 @@
 {% extends "base_generic.html" %}
-
 {% load static %}
-
-<script type="text/javascript">
-
-  Coloris({
-    el: '.coloris'
-  });
-
-</script>
-
 {% block content %}
 <h2>Search</h2>
 <form action="{% url 'vg_app:picture' %}" method="get">
-  <input name="title" type="text" placeholder="Title" {% if request.GET.title %} value={{ request.GET.title }}{% endif %}>
-  <input name="year" type="text" placeholder="Year" {% if request.GET.year %} value={{ request.GET.year }}{% endif %}>
-  <input name="artist" type="text" placeholder="Artist" {% if request.GET.artist %} value={{ request.GET.artist }}{% endif %}>
-  <input name="color" type="text" data-coloris {% if request.GET.color %} value={{ request.GET.color }}{% endif %}/>
-  <input type="checkbox" id="colortr" name="colortr" value="True">
-  <label for="colortr">Search by color</label>
+  <input name="title" type="text" placeholder="Title" {% if request.GET.title %} value="{{ request.GET.title }}"{% endif %}>
+  <input name="year" type="text" placeholder="Year" {% if request.GET.year %} value="{{ request.GET.year }}"{% endif %}>
+  <input name="artist" type="text" placeholder="Artist" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}>
+  <input name="color" type="text" placeholder="Color" data-coloris {% if request.GET.color %} value="{{ request.GET.color }}"{% endif %}/>
   <button type="submit" class="button">Search</button>
 </form>
 {% if picture_list %}
