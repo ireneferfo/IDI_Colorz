@@ -43,7 +43,7 @@ def picture_creation(picture, artist_object):
         picture_object.Color.add(color_object)
 
 
-with open('resources/artists.json', 'r') as a:
+with open('resources/artists.json', 'r', encoding="utf8") as a:
   ARTISTS = json.load(a)
 
 start = time()
@@ -58,7 +58,7 @@ for artist in ARTISTS:
         Wikipedia = artist['wikipediaUrl']
     )
 
-    with open(f"resources/{artist['url']}.json", 'r') as p:
+    with open(f"resources/{artist['url']}.json", 'r', encoding="utf8") as p:
         PICTURES = json.load(p) # lista di dizionari
 
     Parallel(n_jobs=os.cpu_count(),  prefer="threads")(delayed(picture_creation)(picture, artist_object) for picture in tqdm(PICTURES))
