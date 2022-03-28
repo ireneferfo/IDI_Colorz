@@ -3,8 +3,16 @@
 {% load mathfilters %}
 {% block content %}
 <h2>{{ artist.Name }}</h2>
-<p><strong>Birth Date:</strong> {{ artist.Birth_date}}</p>
-<p><strong>Death Date:</strong> {{ artist.Death_date}}</p>
+<div class="row" style="margin-left: 0px;">
+    <div class="column" style="width: 350px">
+        <p><strong>Birth Date:</strong> {{ artist.Birth_date}}</p>
+        <p><strong>Death Date:</strong> {{ artist.Death_date}}</p>
+        <p><strong>Wikipedia:</strong> <a href="{{ artist.Wikipedia}}">{{artist.Wikipedia}}</a></p>
+    </div>
+    <div class="column">
+        <img class = "image-detail" src ="{{artist.Image}}">
+    </div>
 
+</div>
 
 {% endblock %}

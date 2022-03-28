@@ -4,10 +4,30 @@
 {% block content %}
 <h2>{{ picture.Title }}</h2>
 <div class="row" style="margin-left: 0px;">
-    <div class="column">
+    <div class="column" style="width: 350px">
         <p><strong>Author:</strong> <a href="{% url 'vg_app:artist-detail' pk=picture.Artist.id %}">{{ picture.Artist.Name }}</a></p>
         <p><strong>Genre:</strong> {{ picture.Genre}}</p>
         <p><strong>Style:</strong> {{ picture.Style}}</p>
+        {% if picture.Size_x != None %}
+        <p><strong>Width:</strong> {{ picture.Size_x}} cm </p>
+        {% else %}
+        <p><strong>Width:</strong> Not available </p>
+        {% endif %}
+        {% if picture.Size_x != None %}
+        <p><strong>Height:</strong> {{ picture.Size_y}} cm </p>
+        {% else %}
+        <p><strong>Height:</strong> Not available </p>
+        {% endif %}
+        {% if picture.Gallery_name != None %}
+        <p><strong>Gallery / Collection:</strong> {{ picture.Gallery_name}}</p>
+        {% else %}
+        <p><strong>Gallery / Collection:</strong> Not available</p>
+        {% endif %}
+        {% if picture.Location != None %}
+        <p><strong>Painted in:</strong> {{ picture.Location}}</p>
+        {% else %}
+        <p><strong>Painted in:</strong> Not available</p>
+        {% endif %}
     </div>
     <div class="column">
         {% if picture.Year != None %}

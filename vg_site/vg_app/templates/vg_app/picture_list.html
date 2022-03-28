@@ -6,6 +6,7 @@
   <input name="title" type="text" placeholder="Title" {% if request.GET.title %} value="{{ request.GET.title }}"{% endif %}>
   <input name="year" type="text" placeholder="Year" {% if request.GET.year %} value="{{ request.GET.year }}"{% endif %}>
   <input name="artist" type="text" placeholder="Artist" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}>
+  <input name="gallery" type="text" placeholder="Gallery" {% if request.GET.gallery %} value="{{ request.GET.gallery }}"{% endif %}/>
   <input name="color" type="text" placeholder="Color" data-coloris {% if request.GET.color %} value="{{ request.GET.color }}"{% endif %}/>
   <button type="submit" class="button">Search</button>
 </form>
@@ -15,11 +16,13 @@
   <li>
     {% if picture.Year != None %}
     <img class="image-list" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" >
-    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, {{ picture.Artist.Name }} ({{ picture.Year }})
     {% else %}
     <img class = "image-list" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg" >
-    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, {{ picture.Artist.Name }} (unknown)
     {% endif %}
+    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, {{ picture.Artist.Name }} ({{ picture.Year }}) 
+    {% if picture.Gallery_name != None %}
+    <font color="grey">[{{ picture.Gallery_name }}]</font>
+    {% endif%}
   </li>
   {% endfor %}
 </ul>
