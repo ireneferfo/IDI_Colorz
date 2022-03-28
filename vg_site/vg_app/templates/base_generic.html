@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load string_formatter %}
+{% load page_methods %}
 <html lang="en">
 <head>
     {% block title %}<title>Van Gogh</title>{% endblock %}
@@ -34,19 +35,19 @@
     {% block pagination %}
     {% if is_paginated %}
     <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page=1{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">first</a>
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">previous</a>  
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">next</a>
-                    <a href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">last</a>
-                {% endif %}
-            </span>
+        {% if page_obj.has_previous %}
+            <a href="{{ request.path }}?page=1{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">&laquo</a>
+        {% endif %}
+        {% for page in page_obj.number|get_adjacent_pages:page_obj.paginator.num_pages %}
+        {% if page == page_obj.number%}
+        <a class="active" href = "{{ request.path }}?page={{page}}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">{{page}}</a>
+        {% else %}
+        <a href = "{{ request.path }}?page={{page}}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">{{page}}</a>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">&raquo</a>
+        {% endif %}
     </div>
     {% endif %}
     {% endblock %}
