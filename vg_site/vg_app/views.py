@@ -22,6 +22,7 @@ class PictureListView(generic.ListView):
         year = self.request.GET.get('year')
         artist = self.request.GET.get('artist')
         gallery = self.request.GET.get('gallery')
+        tags = self.request.GET.get('tags')
         color = self.request.GET.get('color')
         q = Q()
         if title:
@@ -32,6 +33,8 @@ class PictureListView(generic.ListView):
             q &= Q(Artist__Name__icontains=artist)
         if gallery:
             q &= Q(Gallery_name__icontains=gallery)
+        if tags:
+            q &= Q(Tags__icontains=tags)
         object_list = Picture.objects.filter(q)
         if color:
             ids = [picture.id for picture in object_list if color_is_near(picture, color)]

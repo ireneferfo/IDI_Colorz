@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import django
 from get_colors import extract_colors
 from tqdm import tqdm
@@ -21,7 +22,7 @@ def picture_creation(picture, artist_object):
                         Artist = artist_object,
                         Width = picture['width'],
                         Height = picture['height'],
-                        Location = picture['location'],
+                        Location = re.sub("([a-z])([A-Z])", "\g<1>, \g<2>", picture['location']),
                         Genre = picture['genre'],
                         Style = picture['style'],
                         Size_x = picture['sizeX'],

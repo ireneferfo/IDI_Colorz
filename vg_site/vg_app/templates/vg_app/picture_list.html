@@ -3,11 +3,12 @@
 {% block content %}
 <h2>Search</h2>
 <form action="{% url 'vg_app:picture' %}" method="get">
-  <input name="title" type="text" placeholder="Title" {% if request.GET.title %} value="{{ request.GET.title }}"{% endif %}>
-  <input name="year" type="text" placeholder="Year" {% if request.GET.year %} value="{{ request.GET.year }}"{% endif %}>
-  <input name="artist" type="text" placeholder="Artist" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}>
-  <input name="gallery" type="text" placeholder="Gallery" {% if request.GET.gallery %} value="{{ request.GET.gallery }}"{% endif %}/>
-  <input name="color" type="text" placeholder="Color" data-coloris {% if request.GET.color %} value="{{ request.GET.color }}"{% endif %}/>
+  <input name="title" type="text" placeholder="Title" class="search-field" {% if request.GET.title %} value="{{ request.GET.title }}"{% endif %}>
+  <input name="year" type="text" placeholder="Year" class="search-field" {% if request.GET.year %} value="{{ request.GET.year }}"{% endif %}>
+  <input name="artist" type="text" placeholder="Artist" class="search-field" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}>
+  <input name="gallery" type="text" placeholder="Gallery" class="search-field" {% if request.GET.gallery %} value="{{ request.GET.gallery }}"{% endif %}/>
+  <input name="tags" type="text" placeholder="Tags" class="search-field" {% if request.GET.tags %} value="{{ request.GET.tags }}"{% endif %}/>
+  <input name="color" type="text" placeholder="Color" data-coloris class="search-field" {% if request.GET.color %} value="{{ request.GET.color }}"{% endif %}/>
   <button type="submit" class="button">Search</button>
 </form>
 {% if picture_list %}
