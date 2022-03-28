@@ -6,6 +6,11 @@
 <div class="row" style="margin-left: 0px;">
     <div class="column" style="width: 350px">
         <p><strong>Author:</strong> <a href="{% url 'vg_app:artist-detail' pk=picture.Artist.id %}">{{ picture.Artist.Name }}</a></p>
+        {% if picture.Year != None %}
+        <p><strong>Year:</strong> {{ picture.Year}}</p>
+        {% else %}
+        <p><strong>Year:</strong> Unknown </p>
+        {% endif %}
         <p><strong>Genre:</strong> {{ picture.Genre}}</p>
         <p><strong>Style:</strong> {{ picture.Style}}</p>
         {% if picture.Size_x != None %}
