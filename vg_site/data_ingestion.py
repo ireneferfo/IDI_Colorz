@@ -15,6 +15,10 @@ from vg_app.models import *
 
 
 def picture_creation(picture, artist_object):
+    if picture['location']:
+        loc = re.sub("([a-z])([A-Z])", "\g<1>, \g<2>", picture['location'])
+    else:
+        loc = picture['location']
     picture_object = Picture.objects.create(
                         Picture_ID = picture['contentId'],
                         Title = picture['title'],
@@ -22,7 +26,7 @@ def picture_creation(picture, artist_object):
                         Artist = artist_object,
                         Width = picture['width'],
                         Height = picture['height'],
-                        Location = re.sub("([a-z])([A-Z])", "\g<1>, \g<2>", picture['location']),
+                        Location = loc,
                         Genre = picture['genre'],
                         Style = picture['style'],
                         Size_x = picture['sizeX'],
