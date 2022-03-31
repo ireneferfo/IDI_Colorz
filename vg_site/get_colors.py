@@ -31,8 +31,6 @@ def analyze(img, n_colors):
         d[ordered_colors[i]] = list(counts.values())[i]/(sizeX*sizeY)
     d = {k: v for k, v in sorted(d.items(), key=lambda item: item[1], reverse = True)}
 
-    # plt.figure(figsize = (12, 8))
-    # plt.pie(d.values(), labels = d.keys(), colors = d.keys())
     return d
 
 

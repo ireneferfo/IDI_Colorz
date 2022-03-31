@@ -10,5 +10,6 @@ urlpatterns = [
     path('picture/random/', views.random_picture_detail, name='random'),
     path('artist/', views.ArtistListView.as_view(), name='artist'),
     path('artist/<int:pk>', views.ArtistDetailView.as_view(), name='artist-detail'),
-    path('picture/export/', views.download_picture_csv, name='export-csv')
+    path('picture/export-csv/', views.download_picture_csv, name='picture-export-csv'),
+    path('picture/export-json/', views.download_picture_json, name='picture-export-json')
 ]

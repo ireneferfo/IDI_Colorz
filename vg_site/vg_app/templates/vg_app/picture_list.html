@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
 {% load static %}
+{% load string_formatter %}
 {% block content %}
 <h2>Search</h2>
 <form action="{% url 'vg_app:picture' %}" method="get">
@@ -11,6 +12,11 @@
   <input name="color" type="text" placeholder="Color" data-coloris class="search-field" {% if request.GET.color %} value="{{ request.GET.color }}"{% endif %}/>
   <button type="submit" class="button">Search</button>
 </form>
+Download all data:
+<a href = "{% url 'vg_app:picture-export-csv' %}">.csv</a> <a href = "{% url 'vg_app:picture-export-json' %}">.json</a>
+<br>Download data with current filter:
+<a href = "{% url 'vg_app:picture-export-csv' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">.csv</a>
+<a href = "{% url 'vg_app:picture-export-json' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">.json</a>
 {% if picture_list %}
 <ul style="line-height: 100px;">
   {% for picture in picture_list %}
