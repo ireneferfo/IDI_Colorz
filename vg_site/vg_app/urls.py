@@ -11,5 +11,7 @@ urlpatterns = [
     path('artist/', views.ArtistListView.as_view(), name='artist'),
     path('artist/<int:pk>', views.ArtistDetailView.as_view(), name='artist-detail'),
     path('picture/export-csv/', views.download_picture_csv, name='picture-export-csv'),
-    path('picture/export-json/', views.download_picture_json, name='picture-export-json')
+    path('picture/export-json/', views.download_picture_json, name='picture-export-json'),
+    path('arist/export-csv/', views.download_artist_csv, name='artist-export-csv'),
+    path('artist/export-json/', views.download_artist_json, name='artist-export-json')
 ]

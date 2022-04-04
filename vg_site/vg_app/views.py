@@ -122,6 +122,50 @@ def download_picture_json(request):
     return HttpResponse(picture_json, content_type='application/json')
 
 
+def download_artist_csv(request):
+    response = HttpResponse(content_type='text/csv',
+                            headers={'Content-Disposition': 'attachment; filename="artist.csv"'})
+    model = Artist
+    model_fields = model._meta.fields + model._meta.many_to_many
+    field_names = [field.name for field in model_fields]
+
+    writer = csv.writer(response)
+    writer.writerow(field_names)
+    object_list = Artist.objects.all()
+
+    for row in object_list:
+        values = []
+        for field in field_names:
+            value = getattr(row, field)
+            if value is None:
+                value = ''
+            values.append(value)
+        writer.writerow(values)
+
+    return response
+
+
+def download_artist_json(request):
+    model = Artist
+    model_fields = model._meta.fields + model._meta.many_to_many
+    field_names = [field.name for field in model_fields]
+
+    object_list = Artist.objects.all()
+
+    data = []
+    for row in object_list:
+        values = {}
+        for field in field_names:
+            value = getattr(row, field)
+            if value is None:
+                value = ''
+            values[field] = value
+        data.append(values)
+
+    artist_json = json.dumps(data, cls=DjangoJSONEncoder)
+    return HttpResponse(artist_json, content_type='application/json')
+
+
 class PictureListView(generic.ListView):
     model = Picture
     paginate_by = 10
