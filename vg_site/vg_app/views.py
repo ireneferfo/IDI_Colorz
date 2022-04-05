@@ -175,6 +175,7 @@ class PictureListView(generic.ListView):
         year = self.request.GET.get('year')
         artist = self.request.GET.get('artist')
         gallery = self.request.GET.get('gallery')
+        paintedin = self.request.GET.get('paintedin')
         tags = self.request.GET.get('tags')
         color = self.request.GET.get('color')
         q = Q()
@@ -186,6 +187,8 @@ class PictureListView(generic.ListView):
             q &= Q(Artist__Name__icontains=artist)
         if gallery:
             q &= Q(Gallery_name__icontains=gallery)
+        if paintedin:
+            q &= Q(Location__icontains=paintedin)
         if tags:
             q &= Q(Tags__icontains=tags)
         object_list = Picture.objects.filter(q)

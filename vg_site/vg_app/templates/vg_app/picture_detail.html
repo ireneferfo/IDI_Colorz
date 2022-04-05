@@ -24,12 +24,16 @@
         <p><strong>Height:</strong> Not available </p>
         {% endif %}
         {% if picture.Gallery_name != None %}
-        <p><strong>Gallery / Collection:</strong> {{ picture.Gallery_name}}</p>
+            {% if picture.Gallery_name != 'Private Collection' %}
+                <p><strong>Gallery / Collection:</strong> <a href="https://www.openstreetmap.org/search?query={{picture.Gallery_name}}" target="_blank">{{ picture.Gallery_name}}</a></p>
+            {% else %}
+                <p><strong>Gallery / Collection:</strong> {{picture.Gallery_name}}</p>
+            {% endif %}
         {% else %}
         <p><strong>Gallery / Collection:</strong> Not available</p>
         {% endif %}
         {% if picture.Location != None %}
-        <p><strong>Painted in:</strong> {{ picture.Location}}</p>
+        <p><strong>Painted in:</strong> <a href="https://www.openstreetmap.org/search?query={{picture.Location}}" target="_blank">{{ picture.Location}}</a></p>
         {% else %}
         <p><strong>Painted in:</strong> Not available</p>
         {% endif %}
