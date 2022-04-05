@@ -14,10 +14,11 @@
   <button type="submit" class="button">Search</button>
 </form>
 Download all data:
-<a href = "{% url 'vg_app:picture-export-csv' %}">.csv</a> <a href = "{% url 'vg_app:picture-export-json' %}">.json</a>
+<a href = "{% url 'vg_app:picture-export-csv' %}">.csv</a> <a href = "{% url 'vg_app:picture-export-json' %}">.json</a> <a href = "{% url 'vg_app:picture-export-xml' %}">.xml</a>
 <br>Download data with current filter:
 <a href = "{% url 'vg_app:picture-export-csv' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">.csv</a>
 <a href = "{% url 'vg_app:picture-export-json' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">.json</a>
+<a href = "{% url 'vg_app:picture-export-xml' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}">.xml</a>
 {% if picture_list %}
 <ul style="line-height: 100px;">
   {% for picture in picture_list %}

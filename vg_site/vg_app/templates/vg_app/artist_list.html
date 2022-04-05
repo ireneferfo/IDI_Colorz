@@ -5,7 +5,7 @@
 {% block content %}
 <h2>Artist List</h2>
 Download all data:
-<a href = "{% url 'vg_app:artist-export-csv' %}">.csv</a> <a href = "{% url 'vg_app:artist-export-json' %}">.json</a>
+<a href = "{% url 'vg_app:artist-export-csv' %}">.csv</a> <a href = "{% url 'vg_app:artist-export-json' %}">.json</a> <a href = "{% url 'vg_app:artist-export-xml' %}">.xml</a>
 {% if artist_list %}
 <ul style="line-height: 100px;">
     {% for artist in artist_list %}

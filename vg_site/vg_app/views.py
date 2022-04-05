@@ -122,6 +122,36 @@ def download_picture_json(request):
     return HttpResponse(picture_json, content_type='application/json')
 
 
+def download_picture_xml(request):
+    title = request.GET.get('title')
+    year = request.GET.get('year')
+    artist = request.GET.get('artist')
+    gallery = request.GET.get('gallery')
+    tags = request.GET.get('tags')
+    color = request.GET.get('color')
+    q = Q()
+    if title:
+        q &= Q(Title__icontains=title)
+    if year:
+        q &= Q(Year__icontains=year)
+    if artist:
+        q &= Q(Artist__Name__icontains=artist)
+    if gallery:
+        q &= Q(Gallery_name__icontains=gallery)
+    if tags:
+        q &= Q(Tags__icontains=tags)
+    object_list = Picture.objects.filter(q)
+    if color:
+        ids = [picture.id for picture in object_list if color_is_near(picture, color)]
+        object_list = object_list.filter(id__in=ids)
+
+    with open('picture.xml', 'w') as f:
+        serializers.serialize("xml", object_list, stream=f)
+    with open('picture.xml', 'r') as f:
+        response = HttpResponse(f, content_type='text/xml', headers={'Content-Disposition': 'attachment; filename="picture.xml"'})
+        return response
+
+
 def download_artist_csv(request):
     response = HttpResponse(content_type='text/csv',
                             headers={'Content-Disposition': 'attachment; filename="artist.csv"'})
@@ -166,9 +196,15 @@ def download_artist_json(request):
     return HttpResponse(artist_json, content_type='application/json')
 
 
+def download_artist_xml(request):
+    with open('artist.xml', 'w') as f:
+        serializers.serialize("xml", Artist.objects.all(), stream=f)
+    with open('artist.xml', 'r') as f:
+        response = HttpResponse(f, content_type='text/xml', headers={'Content-Disposition': 'attachment; filename="artist.xml"'})
+        return response
+
+
 def download_image(request):
-
-
     artist = request.GET.get('artist')
     year = request.GET.get('year')
     id = request.GET.get('id')
