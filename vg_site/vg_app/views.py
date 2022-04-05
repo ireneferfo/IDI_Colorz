@@ -145,11 +145,10 @@ def download_picture_xml(request):
         ids = [picture.id for picture in object_list if color_is_near(picture, color)]
         object_list = object_list.filter(id__in=ids)
 
-    with open('picture.xml', 'w') as f:
-        serializers.serialize("xml", object_list, stream=f)
-    with open('picture.xml', 'r') as f:
-        response = HttpResponse(f, content_type='text/xml', headers={'Content-Disposition': 'attachment; filename="picture.xml"'})
-        return response
+    data = serializers.serialize("xml", object_list)
+    response = HttpResponse(data, content_type='text/xml',
+                            headers={'Content-Disposition': 'attachment; filename="picture.xml"'})
+    return response
 
 
 def download_artist_csv(request):
@@ -197,18 +196,17 @@ def download_artist_json(request):
 
 
 def download_artist_xml(request):
-    with open('artist.xml', 'w') as f:
-        serializers.serialize("xml", Artist.objects.all(), stream=f)
-    with open('artist.xml', 'r') as f:
-        response = HttpResponse(f, content_type='text/xml', headers={'Content-Disposition': 'attachment; filename="artist.xml"'})
-        return response
+    data = serializers.serialize("xml", Artist.objects.all())
+    response = HttpResponse(data, content_type='text/xml',
+                            headers={'Content-Disposition': 'attachment; filename="artist.xml"'})
+    return response
 
 
 def download_image(request):
     artist = request.GET.get('artist')
     year = request.GET.get('year')
     id = request.GET.get('id')
-    fl_path = 'vg_app/static/images/'+artist+'/'+year+'/'+id+'.jpg'
+    fl_path = 'vg_app/static/images/' + artist + '/' + year + '/' + id + '.jpg'
     q = Q(Picture_ID__icontains=id)
     object_list = Picture.objects.filter(q)
     filename = object_list[0].Title.replace(' ', '_')
