@@ -1,13 +1,13 @@
 from django.views import generic
-from vg_app.models import Picture, Artist
+from vg_app.models import Picture, Artist, Color
 from random import randint
 from django.db.models import Max, Q
 from django.shortcuts import render, redirect
 from .color_filter import color_is_near
 from django.http import HttpResponse
-from django.core import serializers
-from django.core.serializers.json import DjangoJSONEncoder
-import json
+from rest_framework import serializers
+from rest_framework.renderers import JSONRenderer
+from rest_framework_xml.renderers import XMLRenderer
 import csv
 
 
@@ -27,7 +27,7 @@ def download_picture_csv(request):
                             headers={'Content-Disposition': 'attachment; filename="pictures.csv"'})
     model = Picture
     model_fields = model._meta.fields + model._meta.many_to_many
-    field_names = [field.name for field in model_fields]
+    field_names = [field.name for field in model_fields if field.name != 'id']
 
     writer = csv.writer(response)
     writer.writerow(field_names)
@@ -74,10 +74,6 @@ def download_picture_csv(request):
 
 
 def download_picture_json(request):
-    model = Picture
-    model_fields = model._meta.fields + model._meta.many_to_many
-    field_names = [field.name for field in model_fields]
-
     title = request.GET.get('title')
     year = request.GET.get('year')
     artist = request.GET.get('artist')
@@ -100,26 +96,10 @@ def download_picture_json(request):
         ids = [picture.id for picture in object_list if color_is_near(picture, color)]
         object_list = object_list.filter(id__in=ids)
 
-    data = []
-    for row in object_list:
-        values = {}
-        for field in field_names:
-            if field == "Artist":
-                value = row.Artist.Name
-            elif field == "Color":
-                value = {}
-                for n, color in enumerate(row.Color.all()):
-                    color_dict = {'color': color.Color, 'quantity': color.Quantity}
-                    value[str(n)] = color_dict
-            else:
-                value = getattr(row, field)
-            if value is None:
-                value = ''
-            values[field] = value
-        data.append(values)
-
-    picture_json = json.dumps(data, cls=DjangoJSONEncoder)
-    return HttpResponse(picture_json, content_type='application/json')
+    serializer = PictureSerializer(instance=object_list, many=True)
+    picture_json = JSONRenderer().render(serializer.data)
+    return HttpResponse(picture_json, content_type='application/json',
+                        headers={'Content-Disposition': 'attachment; filename="picture.json"'})
 
 
 def download_picture_xml(request):
@@ -145,10 +125,10 @@ def download_picture_xml(request):
         ids = [picture.id for picture in object_list if color_is_near(picture, color)]
         object_list = object_list.filter(id__in=ids)
 
-    data = serializers.serialize("xml", object_list)
-    response = HttpResponse(data, content_type='text/xml',
+    serializer = PictureSerializer(instance=object_list, many=True)
+    picture_xml = XMLRenderer().render(serializer.data)
+    return HttpResponse(picture_xml, content_type='text/xml',
                             headers={'Content-Disposition': 'attachment; filename="picture.xml"'})
-    return response
 
 
 def download_artist_csv(request):
@@ -156,7 +136,7 @@ def download_artist_csv(request):
                             headers={'Content-Disposition': 'attachment; filename="artist.csv"'})
     model = Artist
     model_fields = model._meta.fields + model._meta.many_to_many
-    field_names = [field.name for field in model_fields]
+    field_names = [field.name for field in model_fields if field.name != 'id']
 
     writer = csv.writer(response)
     writer.writerow(field_names)
@@ -175,31 +155,19 @@ def download_artist_csv(request):
 
 
 def download_artist_json(request):
-    model = Artist
-    model_fields = model._meta.fields + model._meta.many_to_many
-    field_names = [field.name for field in model_fields]
-
     object_list = Artist.objects.all()
-
-    data = []
-    for row in object_list:
-        values = {}
-        for field in field_names:
-            value = getattr(row, field)
-            if value is None:
-                value = ''
-            values[field] = value
-        data.append(values)
-
-    artist_json = json.dumps(data, cls=DjangoJSONEncoder)
-    return HttpResponse(artist_json, content_type='application/json')
+    serializer = ArtistSerializer(instance=object_list, many=True)
+    artist_json = JSONRenderer().render(serializer.data)
+    return HttpResponse(artist_json, content_type='application/json',
+                        headers={'Content-Disposition': 'attachment; filename="artist.json"'})
 
 
 def download_artist_xml(request):
-    data = serializers.serialize("xml", Artist.objects.all())
-    response = HttpResponse(data, content_type='text/xml',
-                            headers={'Content-Disposition': 'attachment; filename="artist.xml"'})
-    return response
+    object_list = Artist.objects.all()
+    serializer = ArtistSerializer(instance=object_list, many=True)
+    artist_xml = XMLRenderer().render(serializer.data)
+    return HttpResponse(artist_xml, content_type='text/xml',
+                        headers={'Content-Disposition': 'attachment; filename="artist.xml"'})
 
 
 def download_image(request):
@@ -259,3 +227,27 @@ class ArtistListView(generic.ListView):
 
 class ArtistDetailView(generic.DetailView):
     model = Artist
+
+
+class ArtistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Artist
+        fields = ("Artist_ID", "Name", "Artist_url", "Birth_date", "Death_date", "Image", "Wikipedia")
+
+
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Color
+        fields = ("Color", "Quantity")
+
+
+class PictureSerializer(serializers.ModelSerializer):
+    Color = ColorSerializer(many=True, read_only=True)
+    Artist = serializers.CharField(source='Artist.Name')
+    class Meta:
+        model = Picture
+        fields = (
+            "Picture_ID", "Title", "Year", "Artist", "Width", "Height", "Location", "Genre", "Style", "Size_x",
+            "Size_y",
+            "Gallery_name", "Tags", "Color")
+        depth = 1
