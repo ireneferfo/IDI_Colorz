@@ -166,6 +166,23 @@ def download_artist_json(request):
     return HttpResponse(artist_json, content_type='application/json')
 
 
+def download_image(request):
+
+
+    artist = request.GET.get('artist')
+    year = request.GET.get('year')
+    id = request.GET.get('id')
+    fl_path = 'vg_app/static/images/'+artist+'/'+year+'/'+id+'.jpg'
+    q = Q(Picture_ID__icontains=id)
+    object_list = Picture.objects.filter(q)
+    filename = object_list[0].Title.replace(' ', '_')
+
+    fl = open(fl_path, 'rb')
+    response = HttpResponse(fl, content_type='image/jpeg')
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+    return response
+
+
 class PictureListView(generic.ListView):
     model = Picture
     paginate_by = 10

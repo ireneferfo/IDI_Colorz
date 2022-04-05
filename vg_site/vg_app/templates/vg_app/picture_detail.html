@@ -38,6 +38,12 @@
         <p><strong>Painted in:</strong> Not available</p>
         {% endif %}
         <p><strong>Tags:</strong> [{{ picture.Tags}}]</p>
+        {% if picture.Year != None %}
+        <p><a href="{% url 'vg_app:picture-export-image'%}?artist={{picture.Artist.Artist_url}}&year={{picture.Year}}&id={{picture.Picture_ID}}">Download image</a></p>
+        {% else %}
+        <p><a href="{% url 'vg_app:picture-export-image'%}?artist={{picture.Artist.Artist_url}}&year=unknown-year&id={{picture.Picture_ID}}">Download image</a></p>
+        {% endif %}
+
     </div>
     <div class="column">
         {% if picture.Year != None %}
