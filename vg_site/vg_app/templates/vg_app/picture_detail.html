@@ -3,7 +3,7 @@
 {% load mathfilters %}
 {% block content %}
 <h2>{{ picture.Title }}</h2>
-<div class="row" style="margin-left: 0px;">
+<div class="row" style="margin-left: 0px; margin-top:30px;">
     <div class="column" style="width: 350px">
         <p><strong>Author:</strong> <a href="{% url 'vg_app:artist-detail' pk=picture.Artist.id %}">{{ picture.Artist.Name }}</a></p>
         {% if picture.Year != None %}
@@ -25,7 +25,7 @@
         {% endif %}
         {% if picture.Gallery_name != None %}
             {% if picture.Gallery_name != 'Private Collection' %}
-                <p><strong>Gallery / Collection:</strong> <a href="https://maps.google.com/?q={{picture.Gallery_name}}" target="_blank">{{ picture.Gallery_name}}</a></p>
+                <p><strong>Gallery / Collection:</strong> <span data-title="Show on Google Maps"><a href="https://maps.google.com/?q={{picture.Gallery_name}}" target="_blank">{{ picture.Gallery_name}}</a></span></p>
             {% else %}
                 <p><strong>Gallery / Collection:</strong> {{picture.Gallery_name}}</p>
             {% endif %}
@@ -33,16 +33,11 @@
         <p><strong>Gallery / Collection:</strong> Not available</p>
         {% endif %}
         {% if picture.Location != None %}
-        <p><strong>Painted in:</strong> <a href="https://maps.google.com/?q={{picture.Location}}" target="_blank">{{ picture.Location}}</a></p>
+        <p><strong>Painted in:</strong> <span data-title="Show on Google Maps"><a href="https://maps.google.com/?q={{picture.Location}}" target="_blank">{{ picture.Location}}</a></span></p>
         {% else %}
         <p><strong>Painted in:</strong> Not available</p>
         {% endif %}
         <p><strong>Tags:</strong> [{{ picture.Tags}}]</p>
-        {% if picture.Year != None %}
-        <p><a href="{% url 'vg_app:picture-export-image'%}?artist={{picture.Artist.Artist_url}}&year={{picture.Year}}&id={{picture.Picture_ID}}">Download image</a></p>
-        {% else %}
-        <p><a href="{% url 'vg_app:picture-export-image'%}?artist={{picture.Artist.Artist_url}}&year=unknown-year&id={{picture.Picture_ID}}">Download image</a></p>
-        {% endif %}
 
     </div>
     <div class="column">
@@ -50,6 +45,13 @@
         <img class = "image-detail" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg">
         {% else %}
         <img class = "image-detail" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg">
+        {% endif %}
+        <br>
+        <br>
+        {% if picture.Year != None %}
+        <p><a class="download-link" href="{% url 'vg_app:picture-export-image'%}?artist={{picture.Artist.Artist_url}}&year={{picture.Year}}&id={{picture.Picture_ID}}">Download image</a></p>
+        {% else %}
+        <p><a class="download-link" href="{% url 'vg_app:picture-export-image'%}?artist={{picture.Artist.Artist_url}}&year=unknown-year&id={{picture.Picture_ID}}">Download image</a></p>
         {% endif %}
     </div>
     <div class="column" style="height: 500px; margin-left: 100px">
