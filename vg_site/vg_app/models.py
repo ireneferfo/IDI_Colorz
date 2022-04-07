@@ -10,7 +10,9 @@ class Artist(models.Model):
     Name = models.CharField(max_length=50)
     Artist_url = models.CharField(max_length=100)
     Birth_date = models.DateField()
+    Birth_place = models.CharField(max_length=500)
     Death_date = models.DateField()
+    Death_place = models.CharField(max_length=500)
     Image = models.CharField(max_length=500, null=True, blank=True)
     Wikipedia = models.CharField(max_length=500, null=True, blank=True)
 

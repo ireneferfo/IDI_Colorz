@@ -58,7 +58,9 @@ for artist in ARTISTS:
         Name = artist['artistName'],
         Artist_url = artist['url'],
         Birth_date = (datetime.fromtimestamp(0) + timedelta(seconds=int(artist['birthDay'][6:-5]))).date(),
+        Birth_place = artist['birthPlace'],
         Death_date = (datetime.fromtimestamp(0) + timedelta(seconds=int(artist['deathDay'][6:-5]))).date(),
+        Death_place = artist['deathPlace'],
         Image = artist['image'],
         Wikipedia = artist['wikipediaUrl']
     )
