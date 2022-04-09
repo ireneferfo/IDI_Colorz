@@ -7,7 +7,7 @@
 Download all data:
 <a href = "{% url 'vg_app:artist-export-csv' %}">.csv</a> <a href = "{% url 'vg_app:artist-export-json' %}">.json</a> <a href = "{% url 'vg_app:artist-export-xml' %}">.xml</a>
 {% if artist_list %}
-<ul style="line-height: 100px;">
+<ul style="line-height: 50px;">
     {% for artist in artist_list %}
     <li>
         <a href="{% url 'vg_app:artist-detail' pk=artist.id %}">{{ artist.Name }}</a>
