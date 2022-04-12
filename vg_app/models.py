@@ -22,7 +22,7 @@ class Color(models.Model):
 
 class Picture(models.Model):
     class Meta:
-        ordering = ['Artist__Name', F('Year').asc(nulls_last=True), 'Title']
+        ordering = [F('Year').asc(nulls_last=True), 'Artist__Name', 'Title']
     Picture_ID = models.IntegerField(default=0, unique=True)
     Title = models.CharField(max_length=50)
     Year = models.PositiveSmallIntegerField(validators=[MinValueValidator(1000), MaxValueValidator(timezone.now().year)], null=True)
