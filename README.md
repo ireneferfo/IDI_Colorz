@@ -44,3 +44,6 @@ The color extraction was done through a python script inspired by [this tutorial
 
 ## Data export
 All data used to create the website can be exported in *csv*, *json* and *xml*, by following the link in the picture list and artist list.
+
+## License
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
