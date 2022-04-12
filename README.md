@@ -60,9 +60,9 @@ It's possible to run a containerized version of this project using [Docker](http
 
 Here's the steps to do it:
 * make sure Docker is up and running
-* clone this repo
-* `cd` into the folder `IDI_Colorz`
 * open up a terminal window
+* clone this repo using `git clone https://github.com/ireneferfo/IDI_Colorz.git`
+* `cd` into the folder `IDI_Colorz`
 * type `docker-compose up`
 
 After a few minutes, the terminal should show something similar to this:
@@ -73,6 +73,6 @@ web_1  | Django version 4.0.3, using settings 'vg_site.settings'
 web_1  | Starting development server at http://0.0.0.0:8000/
 web_1  | Quit the server with CONTROL-C.
 ```
-To reach the website, simply go to `http://0.0.0.0:8000/` or `http://localhost:8000`.
+To reach the website, simply go to `http://0.0.0.0:8000/` or `http://localhost:8000` using a web browser.
 ## License
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).

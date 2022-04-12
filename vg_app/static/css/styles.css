@@ -1,4 +1,24 @@
 /* The sidebar menu */
+body {
+   font-family: Georgia, serif !important;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, serif !important;
+}
+
+.homepage {
+  font-size:18px;
+}
+
+p {
+  font-size: 18px;
+}
+
+a {
+  font-size: 18px;
+}
+
 .sidenav {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 160px; /* Set the width of the sidebar */

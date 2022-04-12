@@ -1,48 +1,55 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Intro</h1>
-    <em>IDI Colorz</em> is a website dedicated to the most famous artists of the last millennium.   
+<h2>Welcome!</h2>
+<p class="homepage">
+    <b>IDI Colorz</b> is a website dedicated to the most famous artists of the last millennium.   
     In it, the user can read about all their paintings and drawings, with an insight on the color composition of each piece.  
     <br>The name of the project comes from the initials of its creators: Irene Ferfoglia, Daniele Irto, and Isacco Zinna.
-<h1>Artists</h1>
-As of right now, the website contains the work of 6 artists:
-<ul>
-    <li>Claude Monet</li>
-    <li>Hilma af Klint</li>
-    <li>Leonardo da Vinci</li>
-    <li>Salvador Dalì</li>
-    <li>Vincent Van Gogh</li>
-    <li>William Blake</li>
+</p>
+
+<h2>Artists</h2>
+<p class="homepage">
+As of right now, the website contains the works of 6 artists:</p>
+<ul class="homepage">
+    <li><b>Claude Monet</b></li>
+    <li><b>Hilma af Klint</b></li>
+    <li><b>Leonardo da Vinci</b></li>
+    <li><b>Salvador Dalì</b></li>
+    <li><b>Vincent Van Gogh</b></li>
+    <li><b>William Blake</b></li>
 </ul> 
-
+<p class="homepage">
 For each one of them, the user can learn about the place of birth and death along with the dates. Moreover, a picture or self-portrait of the artist is provided, along with the <em>Wikipedia</em> link for futher reading. 
-
 A clickable list can be found by following the <a href="{% url 'vg_app:artist' %}">Artists</a> button on the side tab.
+</p>
 
-<h1>Pictures</h1>
-There are two ways to access a picture: randomly or by search.
+<h2>Pictures</h2>
+<p class="homepage">There are two ways to access a picture: randomly or by search.
 
 To access a picture randomly, it is as simple as clicking the <a href="{% url 'vg_app:random' %}">Random Picture</a> button on the side tab. This will lead to the detail page of a random picture, so the user can discover new amazing pieces of art.
+</p>
 
-<h2>Searching for pictures</h2>
-The other way to access a given picture is by using the search engine. By clicking the <a href="{% url 'vg_app:picture' %}">Pictures</a> button, the user will be presented with a view of all the pictures in the database, organized first by year, then alphabetically. 
+<h3>Searching for pictures</h3>
+<p class="homepage">The other way to access a given picture is by using the search engine. By clicking the <a href="{% url 'vg_app:picture' %}">Pictures</a> button, the user will be presented with a view of all the pictures in the database, organized first by year, then alphabetically. 
 
 Through the search engine, the pictures can be filtered by one or more fields:
-<ul>
-    <li>Title: the title of the painting or picture;</li>
-    <li>Year: the year in which the piece was created;</li>
-    <li>Artist: the creator of the piece;</li>
-    <li>Gallery: where the picture is located, when available;</li>
-    <li>Painted in: place where the artist created the piece, when available;</li>
-    <li>Keyword: word desctibing the piece, useful for filtering by content;</li>
-    <li>Painted in: place where the artist created the piece, when available;</li>
-    <li>Color: a color picker appears where the user can select whichever color they like, and the pictures will be filtered by whether or not that color is in the 5 most predominant in the piece. </li>
+<ul class="homepage">
+    <li><b>Title</b>: the title of the painting or picture;</li>
+    <li><b>Year</b>: the year in which the piece was created;</li>
+    <li><b>Artist</b>: the creator of the piece;</li>
+    <li><b>Gallery</b>: where the picture is located, when available;</li>
+    <li><b>Painted in</b>: place where the artist created the piece, when available;</li>
+    <li><b>Keyword</b>: word desctibing the piece, useful for filtering by content;</li>
+    <li><b>Color</b>: a color picker appears where the user can select whichever color they like, and the pictures will be filtered by whether or not that color is in the 5 most predominant in the piece. </li>
 </ul>
+</p>
 
-<h1>Provenance of data</h1>
-All data comes from <a href="https://www.wikiart.org">WikiArt</a>, scraped using <a href="https://github.com/lucasdavid/wikiart">this tool</a>.  
+<h2>Provenance of data</h2>
+<p class="homepage">All data comes from <a href="https://www.wikiart.org">WikiArt</a>, scraped using <a href="https://github.com/lucasdavid/wikiart">this tool</a>.  
 The color extraction was done through a python script inspired by <a href="https://www.alessandroai.com/extract-and-analyze-colors-from-any-image/">this tutorial</a>.
-<h1>Data export</h1>
-All data used to create the website can be exported in <em>csv</em>csv, <em>json</em> and <em>xml</em>, by following the link in the picture list and artist list.
+</p>
+
+<h2>Data export</h2>
+<p class="homepage" style="margin-bottom:40px;">All data used to create the website can be exported in <em>csv</em>, <em>json</em> and <em>xml</em>, by following the link in the picture list and artist list.</p>
 {% endblock %}
