@@ -43,7 +43,9 @@ All data comes from [*WikiArt*](https://www.wikiart.org), scraped using [this to
 The color extraction was done through a python script inspired by [this tutorial](https://www.alessandroai.com/extract-and-analyze-colors-from-any-image/).
 
 ## Data export
-All data used to create the website can be exported in *csv*, *json* and *xml*, by following the link in the picture list and artist list.
+All data used to create the website can be exported in *csv*, *json* and *xml*, by following the link in the picture list and artist list.  
+To download a picture, a link can be found in the detail page.  
+To download a list of pictures, download the *json* file containing them and run ```python image_downloader.py path/to/pictures_json```, which can be found in the **image_downloader** folder.
 
 ## License
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
