@@ -7,3 +7,8 @@ opencv_python==4.5.5.64
 scikit_learn==1.0.2
 tqdm==4.63.0
 django-mathfilters==1.0.0
+
+opencv-python~=4.5.5.64
+sklearn~=0.0
+scikit-learn~=1.0.2
+requests~=2.27.1
