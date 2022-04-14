@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% load string_formatter %}
+{% load page_methods}
+{% block content %}
+<h2>Search</h2>
+<form action="{% url 'vg_app:picture' %}" method="get">
+  <span class="pseudo-tooltip-wrapper" data-title="Title of the painting"><input name="title" type="text" placeholder="Title" class="search-field" {% if request.GET.title %} value="{{ request.GET.title }}"{% endif %}></span>
+  <span class="pseudo-tooltip-wrapper" data-title="Year of the painting"><input name="year" type="text" placeholder="Year" class="search-field" {% if request.GET.year %} value="{{ request.GET.year }}"{% endif %}></span>
+  <span class="pseudo-tooltip-wrapper" data-title="Name of the artist"><input name="artist" type="text" placeholder="Artist" class="search-field" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}></span>
+  <span class="pseudo-tooltip-wrapper" data-title="Gallery in which the painting is located"><input name="gallery" type="text" placeholder="Gallery" class="search-field" {% if request.GET.gallery %} value="{{ request.GET.gallery }}"{% endif %}/></span>
+  <span class="pseudo-tooltip-wrapper" data-title="Location in which the painting was realized"><input name="paintedin" type="text" placeholder="Painted in" class="search-field" {% if request.GET.paintedin %} value="{{ request.GET.paintedin }}"{% endif %}/></span>
+  <span class="pseudo-tooltip-wrapper" data-title="Content of the painting"><input name="tags" type="text" placeholder="Keyword" class="search-field" {% if request.GET.tags %} value="{{ request.GET.tags }}"{% endif %}/></span>
+  <span class="pseudo-tooltip-wrapper" data-title="Color in the painting [HEX]"><input name="color" type="text" placeholder="Color" data-coloris class="search-field" {% if request.GET.color %} value="{{ request.GET.color }}"{% endif %}/></span>
+  <button type="submit" class="button">Search</button>
+</form>
+Download all data:
+<a href = "{% url 'vg_app:picture-export-csv' %}" style="font-size:15px;">.csv</a> <a href = "{% url 'vg_app:picture-export-json' %}" style="font-size:15px;">.json</a> <a href = "{% url 'vg_app:picture-export-xml' %}" style="font-size:15px;">.xml</a>
+<br>Download data with current filter:
+<a href = "{% url 'vg_app:picture-export-csv' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}" style="font-size:15px;">.csv</a>
+<a href = "{% url 'vg_app:picture-export-json' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}" style="font-size:15px;">.json</a>
+<a href = "{% url 'vg_app:picture-export-xml' %}?{% for key,value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value|remove_hashtag }}{% endif %}{% endfor %}" style="font-size:15px;">.xml</a>
+{% if picture_list %}
+<ul style="line-height: 100px;">
+  {% for picture in picture_list %}
+  <li>
+    {% if picture.Year != None %}
+    <img class="image-list" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/{{picture.Year}}/{{picture.Picture_ID}}.jpg" >
+    {% else %}
+    <img class = "image-list" src ="{% static '/images/' %}{{picture.Artist.Artist_url}}/unknown-year/{{picture.Picture_ID}}.jpg" >
+    {% endif %}
+    <a href="{% url 'vg_app:picture-detail' pk=picture.id %}">{{ picture.Title }}</a>, <a><font color="#045e16">{{ picture.Artist.Name }}</font> <font color="#820512">({{ picture.Year }}) </font></a>
+    {% if picture.Gallery_name != None %}
+    <a><font color="grey">[{{ picture.Gallery_name }}]</font></a>
+    {% endif%}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no pictures available.</p>
+{% endif %}
+{% endblock %}
+

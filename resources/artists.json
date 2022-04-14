@@ -1,0 +1,115 @@
+[
+	{
+        "contentId": 220740,
+        "artistName": "Salvador Dali",
+        "url": "salvador-dali",
+        "lastNameFirst": "Dali Salvador",
+        "birthDay": "/Date(-2071526400000)/",
+        "birthPlace": "Figueres, Spain",
+        "deathDay": "/Date(601516800000)/",
+        "deathPlace": "Figueres, Spain",
+        "birthDayAsString": "May 11, 1904",
+        "deathDayAsString": "January 23, 1989",
+        "image": "https://uploads5.wikiart.org/images/salvador-dali.jpg!Portrait.jpg",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Salvador_Dal%C3%AD",
+        "dictonaries": [
+            0,
+            2165,
+            336
+        ]
+    },
+	{
+        "contentId": 211667,
+        "artistName": "Claude Monet",
+        "url": "claude-monet",
+        "lastNameFirst": "Monet Claude",
+        "birthDay": "/Date(-4074969600000)/",
+        "birthPlace": "Paris, France",
+        "deathDay": "/Date(-1359331200000)/",
+        "deathPlace": "Giverny, France",
+        "birthDayAsString": "November 14, 1840",
+        "deathDayAsString": "December 5, 1926",
+        "image": "https://uploads0.wikiart.org/00115/images/claude-monet/440px-claude-monet-1899-nadar-crop.jpg!Portrait.jpg",
+        "wikipediaUrl": "http://en.wikipedia.org/wiki/Claude_Monet",
+        "dictonaries": [
+            1221,
+            316
+        ]
+    },
+	{
+        "contentId": 225091,
+        "artistName": "Leonardo da Vinci",
+        "url": "leonardo-da-vinci",
+        "lastNameFirst": "da Vinci Leonardo",
+        "birthDay": "/Date(-16337462400000)/",
+        "birthPlace": "Anchiano (Vinci), Italy",
+        "deathDay": "/Date(-14221785600000)/",
+        "deathPlace": "Amboise, France",
+        "birthDayAsString": "April 15, 1452",
+        "deathDayAsString": "May 2, 1519",
+        "image": "https://uploads0.wikiart.org/images/leonardo-da-vinci.jpg!Portrait.jpg",
+        "wikipediaUrl": "http://en.wikipedia.org/wiki/Leonardo_da_Vinci",
+        "dictonaries": [
+            303,
+            925
+        ]
+    },
+	{
+        "contentId": 192843,
+        "artistName": "William Blake",
+        "url": "william-blake",
+        "lastNameFirst": "Blake William ",
+        "birthDay": "/Date(-6692976000000)/",
+        "birthPlace": "London, England",
+        "deathDay": "/Date(-4493404800000)/",
+        "deathPlace": "London, England",
+        "birthDayAsString": "November 28, 1757",
+        "deathDayAsString": "August 12, 1827",
+        "image": "https://uploads5.wikiart.org/images/william-blake.jpg!Portrait.jpg",
+        "wikipediaUrl": "http://en.wikipedia.org/wiki/William_Blake",
+        "dictonaries": [
+            1485,
+            8915,
+            310,
+            315
+        ]
+    },
+	{
+        "contentId": 284710,
+        "artistName": "Hilma af Klint",
+        "url": "hilma-af-klint",
+        "lastNameFirst": "Klint Hilma at",
+        "birthDay": "/Date(-3382387200000)/",
+        "birthPlace": "Karlberg Palace, Solna, Sweden",
+        "deathDay": "/Date(-820540800000)/",
+        "deathPlace": "Danderyd, Sweden",
+        "birthDayAsString": "October 26, 1862",
+        "deathDayAsString": "1944",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/7/74/Hilma_af_Klint%2C_portrait_photograph_published_in_1901.jpg",
+        "wikipediaUrl": "http://en.wikipedia.org/wiki/Hilma_af_Klint",
+        "dictonaries": [
+            324,
+            16661,
+            314,
+            15090
+        ]
+    },
+	{
+        "contentId": 204915,
+        "artistName": "Vincent van Gogh",
+        "url": "vincent-van-gogh",
+        "lastNameFirst": "van Gogh Vincent ",
+        "birthDay": "/Date(-3684528000000)/",
+        "birthPlace": "Zundert, Netherlands",
+        "deathDay": "/Date(-2506464000000)/",
+        "deathPlace": "Auvers-sur-Oise, France",
+        "birthDayAsString": "March 30, 1853",
+        "deathDayAsString": "July 29, 1890",
+        "image": "https://uploads8.wikiart.org/images/vincent-van-gogh.jpg!Portrait.jpg",
+        "wikipediaUrl": "https://en.wikipedia.org/wiki/Vincent_van_Gogh",
+        "dictonaries": [
+            16743,
+            317
+        ]
+    }
+]

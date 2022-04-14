@@ -1,2 +1,13 @@
 .DS_Store/
 .DS_Store
+vg_site/secret.txt
+vg_app/static/images
+/static/images
+/staticfiles
+.idea/
+resources/images
+.idea/
+__pycache__/
+vg_app/__pycache__
+vg_app/migrations/__pycache__
+vg_site/__pycache__
