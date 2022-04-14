@@ -7,14 +7,7 @@
 <form action="{% url 'vg_app:picture' %}" method="get">
   <span class="pseudo-tooltip-wrapper" data-title="Title of the painting"><input name="title" type="text" placeholder="Title" class="search-field" {% if request.GET.title %} value="{{ request.GET.title }}"{% endif %}></span>
   <span class="pseudo-tooltip-wrapper" data-title="Year of the painting"><input name="year" type="text" placeholder="Year" class="search-field" {% if request.GET.year %} value="{{ request.GET.year }}"{% endif %}></span>
-  <span class="pseudo-tooltip-wrapper" data-title="Name of the artist"><input name="artist" type="text" placeholder="Artist" list="artists" class="search-field" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}>
-    <datalist id="artists">
-    {% for artist in get_artist_list%}
-        <option value=artist>
-    {% endfor %} 
-    </datalist>
-  </span>
-
+  <span class="pseudo-tooltip-wrapper" data-title="Name of the artist"><input name="artist" type="text" placeholder="Artist" class="search-field" {% if request.GET.artist %} value="{{ request.GET.artist }}"{% endif %}></span>
   <span class="pseudo-tooltip-wrapper" data-title="Gallery in which the painting is located"><input name="gallery" type="text" placeholder="Gallery" class="search-field" {% if request.GET.gallery %} value="{{ request.GET.gallery }}"{% endif %}/></span>
   <span class="pseudo-tooltip-wrapper" data-title="Location in which the painting was realized"><input name="paintedin" type="text" placeholder="Painted in" class="search-field" {% if request.GET.paintedin %} value="{{ request.GET.paintedin }}"{% endif %}/></span>
   <span class="pseudo-tooltip-wrapper" data-title="Content of the painting"><input name="tags" type="text" placeholder="Keyword" class="search-field" {% if request.GET.tags %} value="{{ request.GET.tags }}"{% endif %}/></span>

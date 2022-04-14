@@ -2,6 +2,7 @@
 .DS_Store
 vg_site/secret.txt
 vg_app/static/images
+/static/images
 .idea/
 resources/images
 .idea/

@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+env/
+.env
+data_ingesion.py
+data_ingestion_cuda.py
+get_colors.py
+get_colors_cuda.py
+UML.png
+/image_downloader
