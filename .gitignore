@@ -3,6 +3,7 @@
 vg_site/secret.txt
 vg_app/static/images
 /static/images
+/staticfiles
 .idea/
 resources/images
 .idea/
