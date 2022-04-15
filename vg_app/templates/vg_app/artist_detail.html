@@ -3,10 +3,10 @@
 {% block content %}
 <h2>{{ artist.Name }}</h2>
 <div class="row" style="margin-left: 0px; margin-top:30px">
-    <div class="column" style="width: 350px">
+    <div class="column" style="width: 500px">
         <p><strong>Birth:</strong> {{ artist.Birth_date}} in <span data-title="Show on Google Maps"><a href="https://maps.google.com/?q={{artist.Birth_place}}" target="_blank">{{ artist.Birth_place }}</a></span></p>
         <p><strong>Death:</strong> {{ artist.Death_date}} in <span data-title="Show on Google Maps"><a href="https://maps.google.com/?q={{artist.Death_place}}" target="_blank">{{ artist.Death_place }}</a></span></p>
-        <p><strong>Wikipedia:</strong> <a href="{{ artist.Wikipedia}}">{{artist.Wikipedia}}</a></p>
+        <p><strong>Wikipedia:</strong> <a href="{{ artist.Wikipedia}}" target="_blank">{{artist.Wikipedia}}</a></p>
     </div>
     <div class="column">
         <img class = "image-detail" src ="{{artist.Image}}">

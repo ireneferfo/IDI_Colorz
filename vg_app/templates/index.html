@@ -5,7 +5,7 @@
 <p class="homepage">
     <b>IDI Colorz</b> is a website dedicated to the most famous artists of the last millennium.   
     In it, the user can read about all their paintings and drawings, with an insight on the color composition of each piece.  
-    <br>The name of the project comes from the initials of its creators: Irene Ferfoglia, Daniele Irto, and Isacco Zinna.
+    <br>The name of the project comes from the initials of its creators: <b>I</b>rene Ferfoglia, <b>D</b>aniele Irto, and <b>I</b>sacco Zinna.
 </p>
 
 <h2>Artists</h2>
@@ -46,8 +46,8 @@ Through the search engine, the pictures can be filtered by one or more fields:
 </p>
 
 <h2>Provenance of data</h2>
-<p class="homepage">All data comes from <a href="https://www.wikiart.org">WikiArt</a>, scraped using <a href="https://github.com/lucasdavid/wikiart">this tool</a>.  
-The color extraction was done through a python script inspired by <a href="https://www.alessandroai.com/extract-and-analyze-colors-from-any-image/">this tutorial</a>.
+<p class="homepage">All data comes from <a href="https://www.wikiart.org" target="_blank">WikiArt</a>, scraped using <a href="https://github.com/lucasdavid/wikiart" target="_blank">this tool</a>.  
+The color extraction was done through a python script inspired by <a href="https://www.alessandroai.com/extract-and-analyze-colors-from-any-image/" target="_blank">this tutorial</a>.
 </p>
 
 <h2>Data export</h2>
@@ -56,10 +56,7 @@ The color extraction was done through a python script inspired by <a href="https
     <br>
     To download a picture, a link can be found in the detail page.
     <br>
-    To download a list of pictures, download the json file containing them and run
-    <br>
-    <code>python image_downloader.py path/to/pictures_json</code>
-    <br>
-    which can be found <a href="https://github.com/ireneferfo/IDI_Colorz/blob/django_rest/image_downloader/image_downloader.py">here</a>
+    To download a list of pictures, download the json file containing them and run <code>python image_downloader.py path/to/pictures_json </code>
+    which can be found <a href="https://github.com/ireneferfo/IDI_Colorz/blob/main/image_downloader/image_downloader.py" target="_blank">here</a>
 </p>
 {% endblock %}
