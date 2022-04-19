@@ -174,7 +174,7 @@ def download_image(request):
     artist = request.GET.get('artist')
     year = request.GET.get('year')
     id = request.GET.get('id')
-    fl_path = 'vg_app/static/images/' + artist + '/' + year + '/' + id + '.jpg'
+    fl_path = 'static/images/' + artist + '/' + year + '/' + id + '.jpg'
     q = Q(Picture_ID__icontains=id)
     object_list = Picture.objects.filter(q)
     filename = object_list[0].Title.replace(' ', '_')
