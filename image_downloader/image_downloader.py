@@ -4,7 +4,7 @@ from os.path import exists
 
 import requests
 
-baseUrl = 'http://127.0.0.1:8000/picture/export-image/?artist={}&year={}&id={}'
+baseUrl = 'http://idicolorz.it/picture/export-image/?artist={}&year={}&id={}'
 
 
 def download(path):

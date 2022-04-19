@@ -10,6 +10,4 @@ ADD . /app
 
 RUN pip install -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
-
 CMD gunicorn vg_site.wsgi:application --bind 0.0.0.0:$PORT
