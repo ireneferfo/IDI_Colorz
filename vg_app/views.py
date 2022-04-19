@@ -9,8 +9,6 @@ from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from rest_framework_xml.renderers import XMLRenderer
 from django.conf import settings
-from django.contrib.staticfiles.finders import find
-from django.templatetags.static import static
 import csv
 
 
@@ -174,9 +172,9 @@ def download_artist_xml(request):
 
 def get_static(path):
     if settings.DEBUG:
-        return find(path)
+        return 'static/' + path
     else:
-        return static(path)
+        return 'staticfiles/' + path
 
 def download_image(request):
     artist = request.GET.get('artist')
