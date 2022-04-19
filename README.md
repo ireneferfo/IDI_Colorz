@@ -1,13 +1,13 @@
 # IDI Colorz
 *Open Data Management &amp; the Cloud exam project*
 
-Website is available @ *link*
+Website is available @ http://idicolorz.it
 
 ## Intro
 **IDI Colorz** is a website dedicated to the most famous artists of the last millennium.   
 In it, the user can read about all their paintings and drawings, with an insight on the color composition of each piece.  
 
-The name of the project comes from the initials of its creators: Irene Ferfoglia, Daniele Irto, and Isacco Zinna.
+The name of the project comes from the initials of its creators: **I**rene Ferfoglia, **D**aniele Irto, and **I**sacco Zinna.
 
 
 ## Artists
@@ -68,7 +68,7 @@ Here's the steps to do it:
 If running on an ARM system (e.g. a Macbook with Apple M1 chip), the 3rd step should be replaced with
 * type `docker run -d -e "PORT=8000" -e "DEBUG=0" -p 8000:8000 --platform linux/amd64 isaccoz/idicolorz`
   
-To check all the available versions of the image, go to: https://hub.docker.com/r/isaccoz/idicolorz
+To check all the available versions of the image, go to: https://hub.docker.com/r/isaccoz/idicolorz/tags
 
 ## License
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
