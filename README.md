@@ -59,20 +59,16 @@ which can be found in the **image_downloader** folder.
 It's possible to run a containerized version of this project using [Docker](https://www.docker.com). 
 
 Here's the steps to do it:
-* make sure Docker is up and running
+* make sure the Docker daemon is up and running
 * open up a terminal window
-* clone this repo using `git clone https://github.com/ireneferfo/IDI_Colorz.git`
-* `cd` into the folder `IDI_Colorz`
-* type `docker-compose up`
+* type `docker run -d -e "PORT=8000" -e "DEBUG=0" -p 8000:8000 isaccoz/idicolorz`
+* wait a few minutes for the download of the image (~5 GB of data) 
+* go to `http://0.0.0.0:8000` or `http://localhost:8000` using a web browser
 
-After a few minutes, the terminal should show something similar to this:
-```
-web_1  | System check identified no issues (0 silenced).
-web_1  | April 12, 2022 - 15:37:43
-web_1  | Django version 4.0.3, using settings 'vg_site.settings'
-web_1  | Starting development server at http://0.0.0.0:8000/
-web_1  | Quit the server with CONTROL-C.
-```
-To reach the website, simply go to `http://0.0.0.0:8000/` or `http://localhost:8000` using a web browser.
+If running on an ARM system (e.g. a Macbook with Apple M1 chip), the 3rd step should be replaced with
+* type `docker run -d -e "PORT=8000" -e "DEBUG=0" -p 8000:8000 --platform linux/amd64 isaccoz/idicolorz`
+  
+To check all the available versions of the image, go to: https://hub.docker.com/r/isaccoz/idicolorz
+
 ## License
 This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
