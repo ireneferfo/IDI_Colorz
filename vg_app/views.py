@@ -8,6 +8,9 @@ from django.http import HttpResponse
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
 from rest_framework_xml.renderers import XMLRenderer
+from django.conf import settings
+from django.contrib.staticfiles.finders import find
+from django.templatetags.static import static
 import csv
 
 
@@ -169,12 +172,17 @@ def download_artist_xml(request):
     return HttpResponse(artist_xml, content_type='text/xml',
                         headers={'Content-Disposition': 'attachment; filename="artist.xml"'})
 
+def get_static(path):
+    if settings.DEBUG:
+        return find(path)
+    else:
+        return static(path)
 
 def download_image(request):
     artist = request.GET.get('artist')
     year = request.GET.get('year')
     id = request.GET.get('id')
-    fl_path = 'static/images/' + artist + '/' + year + '/' + id + '.jpg'
+    fl_path = get_static('images/' + artist + '/' + year + '/' + id + '.jpg')
     q = Q(Picture_ID__icontains=id)
     object_list = Picture.objects.filter(q)
     filename = object_list[0].Title.replace(' ', '_')
