@@ -1,7 +1,7 @@
 # IDI Colorz
 *Open Data Management &amp; the Cloud exam project*
 
-Website is available @ http://idicolorz.it
+Website is available @ http://idicolorz.it, https://idicolorz.herokuapp.com/
 
 ## Intro
 **IDI Colorz** is a website dedicated to the most famous artists of the last millennium.   
